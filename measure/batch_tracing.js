@@ -61,7 +61,7 @@ async function navigate(url) {
         monitor.emit('next');
         return;
     }
-    
+
     url = 'https://' + url;
     const computedStyles = ['background-image'];
 
@@ -82,7 +82,12 @@ async function navigate(url) {
 
     async function stopCaption() {
         // await delay(1000);
-        if (stopped) {
+        
+        if (!stopped) {
+            console.log(url, i + 1);
+            monitor.emit('next');
+            stopped = true;
+        } else {
             return;
         }
 
@@ -106,7 +111,7 @@ async function navigate(url) {
 
                 await page.tracing.stop();
 
-                await delay(100);
+                await delay(1000);
                 
                 try {
                     var data = JSON.parse(fs.readFileSync(`traces/${domain}.json`));
@@ -133,11 +138,6 @@ async function navigate(url) {
         } catch (e) {
             console.log(e);
         } finally {
-            if (!stopped) {
-                console.log(url, i + 1);
-                monitor.emit('next');
-                stopped = true;
-            }
             try {
                 await page.tracing.stop();
             } catch (error) { }
