@@ -297,7 +297,7 @@ class Trace {
             p.threads.forEach(t => {
                 if (t.name === 'CrRendererMain') {
                     t.buildTaskTrees();
-
+                    // td: Thread Duration. A td contains task durations of a main thread.
                     var td = [];
                     for (var i = 0; i < MainThreadDurationalTasks.length; i++) td.push(0);
                     for (var tree of t.trees) {
@@ -313,6 +313,7 @@ class Trace {
                 }
             });
         });
+        // return a list of tds
         return res;
     }
 

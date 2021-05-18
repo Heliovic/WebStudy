@@ -1,3 +1,5 @@
+// batch tracing
+
 const EventEmitter = require('events');
 const puppeteer = require('puppeteer');
 const delay = require('delay');
@@ -12,7 +14,7 @@ process.on('unhandledRejection', function(error) {
 });
 
 // URL start points.
-var urls = fs.readFileSync('forum-domains-xtd.txt').toString().split('\n');
+var urls = fs.readFileSync('domains-xtd.txt').toString().split('\n');
 
 // URL end points.
 var finalURLs = new Set();
@@ -29,7 +31,7 @@ function randomFilename() {
     return res;
 }
 
-var i = 2320;
+var i = 0;
 var monitor = new EventEmitter();
 
 monitor.on('next', () => {
