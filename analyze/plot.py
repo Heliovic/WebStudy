@@ -622,7 +622,7 @@ def quantity_dist_scatter_45():
     pyplot.show()
 
 
-def long_task_proportion()):
+def long_task_proportion():
     data = json.loads(open('data-trace.json', 'r').read())['data']
     new_data = []
     for entry in data:

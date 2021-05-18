@@ -23,6 +23,7 @@ function v0() {
     for (var f of files) {
         let filename = '../measure/trace/' + f;
         let data = JSON.parse(fs.readFileSync(filename));
+        // extract data from a raw trace
         let res = extract(data);
         var output = {
             metadata: [
