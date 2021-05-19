@@ -62,6 +62,9 @@ async function navigate(url, event, notifier) {
 
 function extract(data) {
     // Metadata.
+    if (typeof(data.documents) == 'undefined') {
+        return undefined;
+    }
     var res = extractDataFromDomSnapshot(data.documents, data.strings);
     res.loadTime = data.loadTime;
     res.cssCount = data.cssCount;

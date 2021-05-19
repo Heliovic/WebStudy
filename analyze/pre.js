@@ -16,33 +16,35 @@ const CrTrace = require('../system/model');
 // Run from base directory.
 
 function v0() {
-    var files = fs.readdirSync('../measure/trace/');
+    var files = fs.readdirSync('../measure/traces/');
     var formatted = [];
 
     var count = 0;
     for (var f of files) {
-        let filename = '../measure/trace/' + f;
+        console.log(f);
+        let filename = '../measure/traces/' + f;
         let data = JSON.parse(fs.readFileSync(filename));
         // extract data from a raw trace
         let res = extract(data);
-        var output = {
-            metadata: [
-                res.nodeCount, res.imageCount, res.textCount,
-                res.cssCount, res.usedCssCount, res.cssRuleCount,
-                res.charCount
-            ],
-            duration: res.taskDurations
-        };
-        formatted.push(output);
+        if (typeof(res) != 'undefined') {
+            var output = {
+                metadata: [
+                    res.nodeCount, res.imageCount, res.textCount,
+                    res.cssCount, res.usedCssCount, res.cssRuleCount,
+                    res.charCount
+                ],
+                duration: res.taskDurations
+            };
+            formatted.push(output);
+        }
         data = undefined;
         res = undefined;
         output = undefined;
-
         count += 1;
-        console.log(count);
+        console.log(`success: ${count}`);
     }
 
-    fs.writeFileSync('data1.json', JSON.stringify({ data: formatted }));
+    fs.writeFileSync('rendering_data_full.json', JSON.stringify({ data: formatted }));
 }
 
 function v1() {
