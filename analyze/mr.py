@@ -5,7 +5,7 @@ from decimal import Decimal
 import json
 
 
-data = json.loads(open('data.json', 'r').read())['data']
+data = json.loads(open('data1.json', 'r').read())['data']
 
 X = []
 Y = []

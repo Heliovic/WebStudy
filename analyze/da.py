@@ -28,7 +28,7 @@ def explainable_variance(X, Y):
 
 
 tag = ['node', 'image', 'text', 'rule']
-raw_data = json.loads(open('data-trace.json', 'r').read())['data']
+raw_data = json.loads(open('data1.json', 'r').read())['data']
 
 predictor = []
 criterion = []
