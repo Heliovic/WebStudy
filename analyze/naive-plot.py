@@ -16,7 +16,8 @@ def sum_of_top5(arr):
 # And their relationships with layout task duration in the form of
 # scatter plot.
 
-data = json.loads(open('data-trace.json', 'r').read())['data']
+# see also data1.json
+data = json.loads(open('rendering_data_full.json', 'r').read())['data']
 
 node = []
 image = []
@@ -108,6 +109,8 @@ plot_general_points(css, layout)
 pp.subplot(2, 5, 10)
 # pp.scatter(rule, layout, s=1)
 plot_general_points(rule, layout)
+
+# better to use cdf
 
 pp.subplot(251)
 pp.title('node')
